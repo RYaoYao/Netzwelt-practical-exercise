@@ -9,11 +9,10 @@ export const SignIn = async (req,res,next) => {
     })
     const data = response.data
     const token = jwt.sign({name:data.displayName, role:data.roles[0]}, process.env.secret);
-    const {password, roles, ...others} = data
+    const {password, ...others} = data
    
-    res.cookie("access_token",refreshtoken,{httpOnly:true, secure: true, maxAge: 24 * 60 * 60 * 1000 }).status(200).send({...others, token})       
+    res.cookie("access_token",token,{httpOnly:true, secure: true, maxAge: 24 * 60 * 60 * 1000 }).status(200).send({...others, token})       
     }catch(err){
-        
         next(err)
     }
 }
