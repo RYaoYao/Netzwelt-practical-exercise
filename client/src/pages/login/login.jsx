@@ -39,8 +39,9 @@ const Login = () => {
     <div className="login">
   
     <section>
-      {error && <span className="errMsg">{error.message}</span>}
+      
       <h1>Sign In</h1>
+      {error && <span className="errMsg">{error.message}</span>}
       <form onSubmit={handleSubmit}>
         <label htmlFor="username">Username:</label>
         <input type="text" id="username"  autoComplete='off' onChange={(e) => setUser(e.target.value)} value={user} required/>
