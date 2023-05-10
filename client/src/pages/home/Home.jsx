@@ -1,22 +1,22 @@
-import React from 'react'
+
 import useFetch from '../../hooks/useFetch'
+import Navbar from '../../components/navbar/navbar'
 const Home = () => {
   const {data, loading, error} = useFetch("/Territories/All")
-  console.log(data);
+  //console.log(data);
   return (
     <div className='Home'>
-      {data.filter(item => item.parent == null).map((filtered)=> (
+      <Navbar/>
+      <div className="hContainer">
+        {data.filter(item => item.parent == null).map((filtered)=> (
         <ul>
-          <li>
-          <span key ={filtered.id}>{filtered.name}</span>
-          
+          <li key ={filtered.id}>{filtered.name}
           <ul>
-            {data.filter(item=> item.parent == filtered.id).map((filter2)=> (
-                  <li>
-                    <span key = {filter2.id}>{filter2.name}</span>
+            {data.filter(item=> item.parent === filtered.id).map((filter2)=> (
+                  <li  key = {filter2.id}>{filter2.name}
                     <ul>
-                    {data.filter(item=>item.parent == filter2.id).map((filter3)=> (
-                        <li>{filter3.name}</li>
+                    {data.filter(item=>item.parent === filter2.id).map((filter3)=> (
+                        <li key ={filter3.id}>{filter3.name}</li>
                     ))}
                      </ul>
                   </li>
@@ -26,6 +26,7 @@ const Home = () => {
         </ul>
           
       ))}
+      </div>
     </div>
   )
 }

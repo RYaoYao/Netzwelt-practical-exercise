@@ -32,7 +32,7 @@ input,button{
   padding: 0.25rem;
   border-radius: 0.5rem;
 }
-.errmsg {
+.errMsg {
     background-color: lightpink;
     color: firebrick;
     font-weight: bold;
